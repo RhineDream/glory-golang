@@ -24,7 +24,7 @@ func init() {
 	logs.GetLogger("ORM").Println("this is a message of orm")
 
 	orm.RegisterDriver("mysql", orm.DRMySQL)
-	orm.RegisterDataBase("default", "mysql", "root:root201806@tcp(114.115.217.74:3306)/go-demo?charset=utf8&parseTime=True&loc=Local", 30, 30)
+	orm.RegisterDataBase("default", "mysql", "root:root@tcp(127.0.0.1:3306)/go-demo?charset=utf8&parseTime=True&loc=Local", 30, 30)
 	orm.Debug = true
 
 	//访问接口前验证token
