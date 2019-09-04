@@ -1,8 +1,8 @@
 package action
 
 import (
-	user_encode "jwt_demo/common"
-	"jwt_demo/models"
+	user_encode "glory-api/common"
+	"glory-api/models"
 
 	"github.com/astaxie/beego"
 )

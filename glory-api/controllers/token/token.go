@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"github.com/astaxie/beego/logs"
 	jsoniter "github.com/json-iterator/go"
-	"jwt_demo/common"
-	"jwt_demo/models"
-	result "jwt_demo/util"
+	"glory-api/common"
+	"glory-api/models"
+	result "glory-api/util"
 
 	//"fmt"
 	//"reflect"
@@ -37,7 +37,7 @@ func (c *AccessTokenController) Post() {
 	//接受requestBody
 	jsonBody := c.Ctx.Input.RequestBody
 	//json数据封装到LoginForm对象中
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary	//号称全宇宙最快的json解析包
+	var json = jsoniter.ConfigCompatibleWithStandardLibrary //号称全宇宙最快的json解析包
 	err := json.Unmarshal(jsonBody, &userToken)
 
 	if err != nil {
@@ -51,7 +51,7 @@ func (c *AccessTokenController) Post() {
 	token_model, err := models.NewToken(&userToken, T.Token, express_in)
 	if err != nil {
 		logs.Error("NewUser:", err)
-		c.Data["json"] = result.ErrorResult(500,"服务器错误")
+		c.Data["json"] = result.ErrorResult(500, "服务器错误")
 		c.ServeJSON()
 		return
 	}

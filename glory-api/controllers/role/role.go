@@ -1,8 +1,8 @@
 package role
 
 import (
-	"jwt_demo/common"
-	"jwt_demo/models"
+	"glory-api/common"
+	"glory-api/models"
 
 	"github.com/astaxie/beego"
 )

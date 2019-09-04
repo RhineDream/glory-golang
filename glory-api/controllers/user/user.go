@@ -6,9 +6,9 @@ import (
 
 	//	"encoding/hex"
 	//"strings"
-	"jwt_demo/common"
-	"jwt_demo/models"
-	"jwt_demo/util"
+	"glory-api/common"
+	"glory-api/models"
+	"glory-api/util"
 
 	"github.com/astaxie/beego"
 	"github.com/json-iterator/go"
@@ -41,7 +41,7 @@ func (c *LoginController) Post() {
 	//接受requestBody
 	data := c.Ctx.Input.RequestBody
 	//json数据封装到LoginForm对象中
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary	//号称全宇宙最快的json解析包
+	var json = jsoniter.ConfigCompatibleWithStandardLibrary //号称全宇宙最快的json解析包
 	err := json.Unmarshal(data, &form)
 
 	if err != nil {
@@ -58,7 +58,7 @@ func (c *LoginController) Post() {
 	}
 	logs.Debug("UserInfo:", &user)
 
-	ok, err := user.CheckPass(form.Password);
+	ok, err := user.CheckPass(form.Password)
 	if !ok {
 		logs.Error("ParseLoginForm", &form)
 		c.Data["json"] = result.FailedResult("账号或密码错误")

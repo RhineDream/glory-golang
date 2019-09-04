@@ -7,9 +7,9 @@ import (
 	"github.com/astaxie/beego/orm"
 	_ "github.com/astaxie/beego/session/redis"
 	_ "github.com/go-sql-driver/mysql"
-	user_encode "jwt_demo/common"
-	_ "jwt_demo/routers"
-	result "jwt_demo/util"
+	user_encode "glory-api/common"
+	_ "glory-api/routers"
+	result "glory-api/util"
 )
 
 func main() {

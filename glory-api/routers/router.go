@@ -1,12 +1,12 @@
 package routers
 
 import (
-	"jwt_demo/controllers"
-	"jwt_demo/controllers/action"
-	"jwt_demo/controllers/apps"
-	"jwt_demo/controllers/role"
-	"jwt_demo/controllers/token"
-	"jwt_demo/controllers/user"
+	"glory-api/controllers"
+	"glory-api/controllers/action"
+	"glory-api/controllers/apps"
+	"glory-api/controllers/role"
+	"glory-api/controllers/token"
+	"glory-api/controllers/user"
 
 	"github.com/astaxie/beego"
 )
