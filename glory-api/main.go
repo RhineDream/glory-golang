@@ -23,8 +23,9 @@ func init() {
 	l.Println("this is a message of http")
 	logs.GetLogger("ORM").Println("this is a message of orm")
 
+	//注册数据库
 	orm.RegisterDriver("mysql", orm.DRMySQL)
-	orm.RegisterDataBase("default", "mysql", "root:root@tcp(127.0.0.1:3306)/go-demo?charset=utf8&parseTime=True&loc=Local", 30, 30)
+	orm.RegisterDataBase("default", "mysql", beego.AppConfig.String("username")+":"+beego.AppConfig.String("password")+"@tcp("+beego.AppConfig.String("address")+":"+beego.AppConfig.String("port")+")/"+beego.AppConfig.String("dbname")+"?charset=utf8&parseTime=True&loc=Local", 30, 30)
 	orm.Debug = true
 
 	//访问接口前验证token
