@@ -10,7 +10,7 @@ import (
 	result "glory-api/util"
 )
 
-// OauthTokenController operations for OauthToken
+// LoginInfoController operations for LoginInfo
 type LoginInfoController struct {
 	beego.Controller
 }
@@ -24,6 +24,13 @@ func (c *LoginInfoController) URLMapping() {
 /**
  * 用户登录接口
  */
+// GetOne ...
+// @Title 登录
+// @Description 用户登录接口
+// @Param	username		path 	string	true		"用户名"
+// @Param	password		path 	string	true		"密码"
+// @Success 200 {object} util.ResponseResult
+// @Failure 400 用户名，密码不能为空
 // @router /login [post]
 func (c *LoginInfoController) DoLogin() {
 	var form models.LoginForm

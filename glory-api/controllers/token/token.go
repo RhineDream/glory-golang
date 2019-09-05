@@ -12,7 +12,7 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// OauthTokenController operations for OauthToken
+// AccessTokenController operations for AccessToken
 type AccessTokenController struct {
 	beego.Controller
 }

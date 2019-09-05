@@ -14,6 +14,11 @@ import (
 )
 
 func main() {
+	//开启swagger文档
+	if beego.BConfig.RunMode == "dev" {
+		beego.BConfig.WebConfig.DirectoryIndex = true
+		beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
+	}
 	beego.Run()
 }
 
