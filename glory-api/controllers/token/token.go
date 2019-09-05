@@ -4,22 +4,16 @@ import (
 	"fmt"
 	"github.com/astaxie/beego/logs"
 	jsoniter "github.com/json-iterator/go"
-	"glory-api/common"
+	user_encode "glory-api/common"
 	"glory-api/models"
 	result "glory-api/util"
-
-	//"fmt"
-	//"reflect"
 	"strconv"
 
 	"github.com/astaxie/beego"
 )
 
+// OauthTokenController operations for OauthToken
 type AccessTokenController struct {
-	beego.Controller
-}
-
-type RefreshtokenController struct {
 	beego.Controller
 }
 
@@ -30,8 +24,15 @@ type UserToken struct {
 	Express_in int64
 }
 
+// URLMapping ...
+func (c *AccessTokenController) URLMapping() {
+	c.Mapping("access_token", c.AccessToken)
+
+}
+
 /*验证appid 和 secret，下发token*/
-func (c *AccessTokenController) Post() {
+// @router /access_token [post]
+func (c *AccessTokenController) AccessToken() {
 
 	var userToken models.CreateTokenForm
 	//接受requestBody

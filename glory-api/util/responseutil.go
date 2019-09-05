@@ -1,7 +1,9 @@
 package result
 
 import (
+	"container/list"
 	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -23,7 +25,7 @@ func SuccessResult(data interface{}) *ResponseResult {
 func FailedResult(errMsg string) *ResponseResult {
 	return &ResponseResult{400, errMsg, ""}
 }
-func ErrorResult(code int,errMsg string) *ResponseResult {
+func ErrorResult(code int, errMsg string) *ResponseResult {
 	return &ResponseResult{code, errMsg, ""}
 }
 
@@ -34,3 +36,13 @@ func ResponseWithJson(w http.ResponseWriter, code int, payload interface{}) {
 	w.Write(response)
 }
 
+func CheckStringInList(s string, list list.List) bool {
+	flag := false
+	for item := list.Front(); nil != item; item = item.Next() {
+		fmt.Println(item.Value)
+		if item.Value == s {
+			flag = true
+		}
+	}
+	return flag
+}

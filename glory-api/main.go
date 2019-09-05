@@ -1,6 +1,7 @@
 package main
 
 import (
+	"container/list"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/logs"
@@ -28,9 +29,19 @@ func init() {
 	orm.RegisterDataBase("default", "mysql", beego.AppConfig.String("username")+":"+beego.AppConfig.String("password")+"@tcp("+beego.AppConfig.String("address")+":"+beego.AppConfig.String("port")+")/"+beego.AppConfig.String("dbname")+"?charset=utf8&parseTime=True&loc=Local", 30, 30)
 	orm.Debug = true
 
+	//匿名请求配置器
+	anonList := list.New()
+	anonList.PushBack("/api/oauth/access_token")
+	anonList.PushBack("/api/do_login/login")
+	anonList.PushBack("/api/do_login/register")
+
 	//访问接口前验证token
 	var filterUser = func(ctx *context.Context) {
-		if ctx.Request.RequestURI != "/login" && ctx.Request.RequestURI != "/access_token" {
+		url := ctx.Request.RequestURI
+		flag := result.CheckStringInList(url, *anonList)
+		if flag {
+			logs.Info("-----当前请求是匿名请求，无需拦截----")
+		} else {
 			token := ctx.Input.Header("Authorization")
 			if token == "" {
 				logs.Info("token为空！")
@@ -47,6 +58,7 @@ func init() {
 
 			logs.Info("Request token---------", token)
 		}
+
 	}
 
 	beego.InsertFilter("/*", beego.BeforeRouter, filterUser)
